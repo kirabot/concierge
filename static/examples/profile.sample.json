@@ -1,0 +1,201 @@
+{
+  "basics": {
+    "name": "Alex Mercer",
+    "headline": "Senior product-minded software engineer",
+    "headlines": [
+      "Senior product-minded software engineer",
+      "Creative Technologist",
+      "Technical Director - Games, VR, AI Systems",
+      "Managing Director - Interactive Media & R&D"
+    ],
+    "email": "alex@example.com",
+    "phone": "+36 20 555 0199",
+    "location": "Budapest, Hungary",
+    "summary": "Engineer with a bias toward shipping clean user-facing systems, building internal tooling, and translating ambiguous requirements into maintainable products.",
+    "website": "https://alex.example.com"
+  },
+  "roles": [
+    {
+      "id": "role_euclidean_platform",
+      "title": "Lead Full-Stack Engineer",
+      "organization": "Euclidean Labs",
+      "organization_url": "https://example.com/euclidean-labs",
+      "location": "Budapest",
+      "summary": "Owned product architecture, hiring loops, and hands-on delivery for a document-heavy internal platform.",
+      "bullets": [
+        "Designed and shipped a browser-based operations suite used across finance, support, and product teams.",
+        "Led a three-engineer delivery stream while still owning core architecture decisions and high-risk implementation work.",
+        "Reduced turnaround on internal requests by building self-serve workflow tooling and print-ready document generators."
+      ],
+      "date_range": {
+        "start": "2023-01",
+        "end": "Present"
+      },
+      "tags": ["leadership", "full-stack", "architecture"],
+      "skills": ["javascript", "python", "flask", "product thinking"],
+      "keywords": ["internal tooling", "web apps", "cross-functional collaboration"],
+      "domains": ["operations", "fintech"],
+      "impact": "Improved internal document throughput by 35%.",
+      "priority": 4
+    },
+    {
+      "id": "role_backend_scale",
+      "title": "Senior Backend Engineer",
+      "organization": "Northwind Systems",
+      "location": "Remote",
+      "summary": "Built APIs, data pipelines, and deployment automation for a transaction-heavy B2B platform.",
+      "bullets": [
+        "Implemented Python services and scheduling workflows for data ingestion, billing, and analytics.",
+        "Hardened service interfaces, observability, and deployment scripts for a growing production environment.",
+        "Partnered with product leadership to scope milestone delivery and prioritize technical debt."
+      ],
+      "date_range": {
+        "start": "2020-04",
+        "end": "2022-12"
+      },
+      "tags": ["backend", "api design", "reliability"],
+      "skills": ["python", "sql", "api design", "observability"],
+      "keywords": ["distributed systems", "platform", "data pipelines"],
+      "domains": ["saas"],
+      "impact": "Supported a 2x growth period without service regressions.",
+      "priority": 3
+    }
+  ],
+  "projects": [
+    {
+      "id": "project_cv_tooling",
+      "name": "Tailored Document Generator",
+      "organization": "Independent",
+      "organization_url": "https://example.com/independent",
+      "summary": "A schema-driven generator for turning structured data into polished printable documents.",
+      "bullets": [
+        "Separated template structure from source data so layouts could evolve independently from content.",
+        "Implemented strict JSON validation and deterministic rendering to reduce formatting regressions.",
+        "Designed the system so generated output stayed printable and editable before export."
+      ],
+      "date_range": {
+        "start": "2025-10",
+        "end": "Present"
+      },
+      "tags": ["document generation", "product"],
+      "skills": ["javascript", "flask", "html", "css"],
+      "keywords": ["schema validation", "rendering", "pdf"],
+      "domains": ["productivity"],
+      "impact": "Cut repeated manual document work down to minutes.",
+      "priority": 4,
+      "url": "https://github.com/example/cv-tooling"
+    }
+  ],
+  "achievements": [
+    {
+      "id": "achievement_hiring",
+      "title": "Built a practical engineering interview loop",
+      "summary": "Created an interview process that improved signal without overburdening candidates.",
+      "bullets": [
+        "Introduced role-relevant take-home evaluation and structured scoring rubrics.",
+        "Aligned hiring feedback with actual team delivery needs."
+      ],
+      "tags": ["leadership", "hiring"],
+      "skills": ["people management"],
+      "keywords": ["team building"],
+      "domains": ["management"],
+      "impact": "Reduced interview time-to-decision by 40%.",
+      "priority": 3
+    }
+  ],
+  "skills": [
+    {
+      "id": "skill_python",
+      "name": "Python",
+      "level": "advanced",
+      "category": "backend",
+      "priority": 5,
+      "tags": ["backend"],
+      "keywords": ["api design", "automation"],
+      "domains": ["saas"]
+    },
+    {
+      "id": "skill_javascript",
+      "name": "JavaScript",
+      "level": "advanced",
+      "category": "frontend",
+      "priority": 5,
+      "tags": ["frontend", "full-stack"],
+      "keywords": ["web apps", "rendering"],
+      "domains": ["productivity"]
+    },
+    {
+      "id": "skill_architecture",
+      "name": "Architecture",
+      "level": "advanced",
+      "category": "leadership",
+      "priority": 4,
+      "tags": ["architecture", "leadership"],
+      "keywords": ["system design"],
+      "domains": ["platform"]
+    }
+  ],
+  "education": [
+    {
+      "id": "education_cs",
+      "credential": "BSc Computer Science",
+      "institution": "University of Novi Sad",
+      "location": "Novi Sad",
+      "details": "Coursework focused on algorithms, distributed systems, and software engineering.",
+      "bullets": [
+        "Graduated with a thesis on workflow optimization for distributed systems."
+      ],
+      "date_range": {
+        "start": "2012",
+        "end": "2016"
+      },
+      "tags": ["computer science"],
+      "skills": ["algorithms"],
+      "keywords": ["distributed systems"],
+      "domains": ["academia"],
+      "priority": 1
+    }
+  ],
+  "certifications": [
+    {
+      "id": "cert_cloud",
+      "name": "Cloud Architecture Foundations",
+      "issuer": "Cloud Guild",
+      "credential_id": "CG-2024-817",
+      "details": "Focused on systems design tradeoffs, resiliency patterns, and secure deployment habits.",
+      "bullets": [
+        "Applied training to improve deployment and rollback planning."
+      ],
+      "date_range": {
+        "start": "2024",
+        "end": "2024"
+      },
+      "tags": ["architecture"],
+      "skills": ["system design"],
+      "keywords": ["reliability"],
+      "domains": ["platform"],
+      "priority": 2,
+      "url": "https://example.com/cert/cloud"
+    }
+  ],
+  "links": [
+    {
+      "id": "link_github",
+      "label": "GitHub",
+      "url": "https://github.com/example",
+      "kind": "portfolio",
+      "priority": 2,
+      "tags": ["code"],
+      "keywords": ["portfolio"]
+    },
+    {
+      "id": "link_site",
+      "label": "Portfolio",
+      "url": "https://alex.example.com",
+      "kind": "website",
+      "priority": 2,
+      "tags": ["website"],
+      "keywords": ["portfolio"]
+    }
+  ]
+}

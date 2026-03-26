@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+
+output/
+
+profile.master.json
+profile.master.additions.json
+wsp.json

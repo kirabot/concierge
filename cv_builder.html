@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CV Builder</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap");
+
+    :root {
+      --bg: #f3efe7;
+      --paper: #fffdf8;
+      --panel: rgba(255, 253, 248, 0.88);
+      --ink: #181612;
+      --muted: #6b645b;
+      --border: rgba(44, 34, 22, 0.14);
+      --accent: #0f5f57;
+      --danger: #982b2b;
+      --shadow: 0 18px 42px rgba(46, 31, 18, 0.12);
+      --radius: 18px;
+      --ui-font: "Inter", "Segoe UI", sans-serif;
+      --display-font: "Canela", "Playfair Display", Georgia, serif;
+      --mono-font: "Cascadia Code", Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      background:
+        radial-gradient(circle at top left, rgba(15, 95, 87, 0.16), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(201, 109, 58, 0.14), transparent 28%),
+        linear-gradient(180deg, #f8f3ea 0%, var(--bg) 100%);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: var(--ui-font);
+      background: transparent;
+    }
+
+    .appShell {
+      display: grid;
+      grid-template-columns: minmax(380px, 460px) minmax(0, 1fr);
+      gap: 20px;
+      padding: 20px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--panel);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 20px;
+      max-height: calc(100vh - 40px);
+      overflow: auto;
+    }
+
+    .section {
+      padding: 18px 18px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section:last-child { border-bottom: 0; }
+    h1, h2, h3 { margin: 0; }
+
+    .eyebrow {
+      letter-spacing: 0.18em;
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .appTitle {
+      margin-top: 8px;
+      font-size: 30px;
+      font-family: var(--display-font);
+      line-height: 1;
+    }
+
+    .lede,
+    .note,
+    .toolbarText,
+    .sectionMeta,
+    .itemMeta {
+      color: var(--muted);
+    }
+
+    .lede {
+      margin-top: 12px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .fieldLabel {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    textarea,
+    input[type="text"],
+    select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--ink);
+      font: inherit;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 220px;
+      font-family: var(--mono-font);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .compactInput {
+      min-height: 110px;
+      font-family: var(--ui-font);
+      font-size: 14px;
+    }
+
+    .controlRow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+      align-items: center;
+    }
+
+    .fileInput {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      padding: 10px 12px;
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.54);
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
+    }
+
+    button:hover { transform: translateY(-1px); }
+    button:disabled { cursor: default; opacity: 0.52; transform: none; box-shadow: none; }
+
+    button.primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 10px 18px rgba(15, 95, 87, 0.18);
+    }
+
+    button.secondary {
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--ink);
+      border-color: var(--border);
+    }
+
+    button.ghost {
+      background: transparent;
+      color: var(--muted);
+      border-color: var(--border);
+      padding: 6px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+    }
+
+    .note {
+      margin-top: 10px;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .statusBox,
+    .errorBox {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      font-size: 13px;
+      line-height: 1.45;
+      white-space: pre-wrap;
+    }
+
+    .statusBox {
+      background: rgba(15, 95, 87, 0.08);
+      border: 1px solid rgba(15, 95, 87, 0.18);
+      color: var(--accent);
+    }
+
+    .errorBox {
+      background: rgba(152, 43, 43, 0.08);
+      border: 1px solid rgba(152, 43, 43, 0.22);
+      color: var(--danger);
+      display: none;
+    }
+
+    .reviewPanel { display: none; }
+    .reviewGrid, .itemList, .workspace { display: grid; gap: 14px; }
+
+    .tabRow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tabButton {
+      background: rgba(255, 255, 255, 0.7);
+      color: var(--muted);
+      border-color: var(--border);
+      box-shadow: none;
+    }
+
+    .tabButton.active {
+      background: var(--accent);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 10px 18px rgba(15, 95, 87, 0.16);
+    }
+
+    .tabButton.inactiveSection {
+      opacity: 0.62;
+    }
+
+    .sectionCard {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.62);
+    }
+
+    .sectionHeaderRow,
+    .itemRow {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .sectionHeaderRow { margin-bottom: 10px; }
+    .sectionTitle { font-weight: 800; font-size: 16px; }
+
+    .itemCard {
+      border-top: 1px solid var(--border);
+      padding-top: 10px;
+    }
+
+    .toggleLabel {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--ink);
+    }
+
+    .toggleLabel input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--accent);
+    }
+
+    .chipRow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .chip {
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15, 95, 87, 0.09);
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 16px 18px;
+    }
+
+    .sheetWrap {
+      padding: 0 18px 18px;
+      overflow: auto;
+    }
+
+    .sheet {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      background: var(--paper);
+      border-radius: 18px;
+      border: 1px solid rgba(44, 34, 22, 0.08);
+      box-shadow: 0 20px 42px rgba(43, 32, 20, 0.12);
+      overflow: hidden;
+    }
+
+    .sheet.sheet-noir {
+      background: #101114;
+    }
+
+    .placeholder {
+      padding: 36px;
+      color: var(--muted);
+      font-family: var(--display-font);
+      font-size: 24px;
+      line-height: 1.35;
+    }
+
+    @media (max-width: 1100px) {
+      .appShell { grid-template-columns: 1fr; }
+      .sidebar { position: static; max-height: none; }
+      .sheetWrap { padding-top: 0; }
+    }
+
+    @media print {
+      body { background: white; }
+      .appShell { display: block; padding: 0; }
+      .sidebar, .toolbar { display: none !important; }
+      .panel, .sheet { box-shadow: none; border: 0; border-radius: 0; }
+      .sheetWrap { padding: 0; }
+
+      body.print-noir,
+      body.print-noir .sheetWrap,
+      body.print-noir .sheet {
+        background: #101114 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="appShell">
+    <aside class="panel sidebar">
+      <section class="section">
+        <div class="eyebrow">Local Drafting Tool</div>
+        <h1 class="appTitle">CV Builder</h1>
+        <p class="lede">Upload two curated JSON files, build a targeted draft, review the chosen evidence, and print a clean PDF.</p>
+        <div id="status" class="statusBox">Load your profile and job JSON to generate a draft CV.</div>
+        <div id="error" class="errorBox"></div>
+      </section>
+
+      <section class="section">
+        <label class="fieldLabel" for="profileJson">Profile JSON</label>
+        <textarea id="profileJson" spellcheck="false" placeholder="{&quot;basics&quot;: ..., &quot;roles&quot;: [...]}"></textarea>
+        <div class="controlRow">
+          <label class="fileInput"><span>Choose file</span><input id="profileFile" type="file" accept=".json,application/json" /></label>
+        </div>
+        <p class="note">The full source-of-truth library of roles, projects, skills, education, achievements, and links.</p>
+      </section>
+
+      <section class="section">
+        <label class="fieldLabel" for="jobJson">Job JSON</label>
+        <textarea id="jobJson" spellcheck="false" placeholder="{&quot;target_role&quot;: ..., &quot;must_have&quot;: [...]}"></textarea>
+        <div class="controlRow">
+          <label class="fileInput"><span>Choose file</span><input id="jobFile" type="file" accept=".json,application/json" /></label>
+        </div>
+        <p class="note">The curated requirements for one target role, including must-haves, nice-to-haves, keywords, and focus weights.</p>
+      </section>
+
+      <section class="section">
+        <div class="controlRow">
+          <button id="sampleBtn" class="secondary" type="button">Load Samples</button>
+          <button id="buildBtn" class="primary" type="button">Build Draft</button>
+          <button id="printBtn" class="secondary" type="button" disabled>Print PDF</button>
+        </div>
+        <p class="note">Schema validation is strict. Unknown fields and malformed item shapes are rejected before matching.</p>
+      </section>
+
+      <section id="reviewPanel" class="section reviewPanel">
+        <div class="controlRow" style="justify-content: space-between; margin-top: 0;">
+          <div class="eyebrow">Review Draft</div>
+          <button id="addSpacerBtn" class="ghost" type="button">Add Spacer</button>
+        </div>
+        <div class="reviewGrid" style="margin-top: 12px;">
+          <div>
+            <label class="fieldLabel" for="headlineSelect">Headline Options</label>
+            <select id="headlineSelect"></select>
+          </div>
+          <div>
+            <label class="fieldLabel" for="headlineInput">Headline</label>
+            <input id="headlineInput" type="text" />
+          </div>
+          <div>
+            <label class="fieldLabel" for="summaryInput">Summary</label>
+            <textarea id="summaryInput" class="compactInput"></textarea>
+          </div>
+          <div>
+            <div class="fieldLabel" style="margin-bottom: 10px;">Sections</div>
+            <div id="reviewTabs" class="tabRow"></div>
+          </div>
+          <div id="reviewSections"></div>
+        </div>
+      </section>
+    </aside>
+
+    <main class="workspace">
+      <section class="panel">
+        <div class="toolbar">
+          <div>
+            <div class="eyebrow">Preview</div>
+            <div class="toolbarText">The renderer consumes only the generated `cvDraft` model.</div>
+          </div>
+          <div class="controlRow" style="margin-top: 0;">
+            <div>
+              <label class="fieldLabel" for="templateSelect" style="margin-bottom: 4px;">Style</label>
+              <select id="templateSelect">
+                <option value="classic">Classic Light</option>
+                <option value="noir">Noir Red</option>
+              </select>
+            </div>
+            <div class="toolbarText" id="previewMeta">No draft generated yet.</div>
+          </div>
+        </div>
+        <div class="sheetWrap">
+          <div id="sheet" class="sheet">
+            <div class="placeholder">Build a draft to see the tailored CV preview here.</div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="/static/cv.builder.js"></script>
+</body>
+</html>

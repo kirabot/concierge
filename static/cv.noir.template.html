@@ -1,0 +1,364 @@
+<article class="cvDoc noirDoc">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap");
+
+    .noirDoc {
+      --bg: #111214;
+      --bg-soft: #18191d;
+      --ink: #f2ede4;
+      --muted: #b8b1a6;
+      --line: rgba(242, 237, 228, 0.14);
+      --accent: #a51e22;
+      --accent-soft: rgba(165, 30, 34, 0.18);
+      position: relative;
+      min-height: 297mm;
+      padding: 14mm 14mm 15mm;
+      color: var(--ink);
+      background: linear-gradient(180deg, #16171a 0%, #101114 100%);
+      font-family: "Inter", "Segoe UI", sans-serif;
+      line-height: 1.4;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .noirDoc::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 2mm;
+      background: var(--accent);
+    }
+
+    .cvHeader {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      column-gap: 14mm;
+      row-gap: 8px;
+      grid-template-rows: repeat(5, auto);
+      align-items: start;
+      padding-top: 5mm;
+      padding-bottom: 6mm;
+      border-bottom: 1px solid var(--line);
+      align-items: stretch;
+    }
+
+    .nameBlock {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      min-width: 0;
+      align-self: stretch;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .cvName {
+      margin: 0;
+      font-size: 48px;
+      line-height: 0.9;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+      font-family: "Canela", "Playfair Display", Georgia, serif;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .cvHeadline {
+      font: 700 17px "Inter", "Segoe UI", sans-serif;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+      display: inline-block;
+      max-width: 100%;
+    }
+
+    .headlineBlock {
+      grid-column: 1;
+      grid-row: 3;
+      align-self: center;
+    }
+
+    .locationBlock {
+      grid-column: 1;
+      grid-row: 4;
+      align-self: center;
+    }
+
+    .cvLocation {
+      color: var(--muted);
+      font: 600 12px "Inter", "Segoe UI", sans-serif;
+      letter-spacing: 0.01em;
+    }
+
+    .cvTarget {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 6px 10px;
+      border: 1px solid rgba(165, 30, 34, 0.42);
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--ink);
+      font: 600 11px "Inter", "Segoe UI", sans-serif;
+      letter-spacing: 0.05em;
+      white-space: normal;
+      width: 100%;
+      min-height: 100%;
+      box-sizing: border-box;
+    }
+
+    .contactStack,
+    .skillGrid {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .contactStack {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, auto);
+      gap: 8px;
+      align-content: start;
+    }
+
+    .inlineLinks {
+      grid-column: 2;
+      grid-row: 3 / span 3;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, auto);
+      gap: 8px;
+      align-content: start;
+    }
+
+    .contactChip,
+    .skillPill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--ink);
+      font: 600 11px "Inter", "Segoe UI", sans-serif;
+      text-decoration: none;
+      transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
+    }
+
+    .contactStack .contactChip {
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+    }
+
+    .inlineLinks .contactChip {
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+    }
+
+    .targetBlock {
+      grid-column: 1;
+      grid-row: 5;
+      align-self: end;
+      display: flex;
+    }
+
+    .contactChip:visited,
+    .contactChip:hover,
+    .contactChip:active,
+    .contactChip:focus-visible {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .contactChip:hover,
+    .contactChip:focus-visible {
+      background: rgba(165, 30, 34, 0.14);
+      border-color: rgba(165, 30, 34, 0.45);
+      outline: 1px solid rgba(165, 30, 34, 0.5);
+      outline-offset: 0;
+    }
+
+    .summaryBlock {
+      margin-top: 7mm;
+      padding-bottom: 5mm;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .summaryText {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--ink);
+    }
+
+    .sections {
+      display: grid;
+      gap: 5mm;
+      padding-top: 7mm;
+    }
+
+    .pageSpacer {
+      position: relative;
+      border: 1px dashed rgba(165, 30, 34, 0.42);
+      border-radius: 14px;
+      background: rgba(165, 30, 34, 0.08);
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .pageSpacer::before {
+      content: attr(data-label);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font: 700 10px "Inter", "Segoe UI", sans-serif;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(242, 237, 228, 0.86);
+    }
+
+    .cvSection {
+      display: grid;
+      gap: 3mm;
+    }
+
+    .sectionHeading {
+      margin: 0;
+      color: var(--accent);
+      font: 800 11px "Inter", "Segoe UI", sans-serif;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    .itemList {
+      display: grid;
+      gap: 3.2mm;
+    }
+
+    .entry {
+      display: grid;
+      gap: 1.4mm;
+      padding-top: 2mm;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .entry:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .entryTop {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .entryTitle {
+      margin: 0;
+      font-size: 15px;
+      color: var(--ink);
+      font-family: "Canela", "Playfair Display", Georgia, serif;
+      font-weight: 700;
+    }
+
+    .entryTitle a,
+    .entrySubtitle a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(165, 30, 34, 0.35);
+    }
+
+    .entryTitle a:hover,
+    .entrySubtitle a:hover {
+      border-bottom-color: rgba(165, 30, 34, 0.8);
+    }
+
+    .entrySubtitle {
+      font: 600 11px "Inter", "Segoe UI", sans-serif;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    .entryMeta {
+      text-align: right;
+      color: var(--muted);
+      font: 600 11px "Inter", "Segoe UI", sans-serif;
+    }
+
+    .entrySummary {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .bulletList {
+      margin: 0;
+      padding-left: 17px;
+      display: grid;
+      gap: 1.2mm;
+      color: var(--ink);
+      font-size: 12px;
+    }
+
+    .printFill {
+      display: none;
+    }
+
+    @media print {
+      .printFill {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: #101114;
+        z-index: 0;
+      }
+
+      .noirDoc > :not(.printFill) {
+        position: relative;
+        z-index: 1;
+      }
+
+      .pageSpacer {
+        border: 0;
+        background: transparent;
+      }
+
+      .pageSpacer::before {
+        content: none;
+      }
+    }
+  </style>
+
+  <div class="printFill" aria-hidden="true"></div>
+
+  <header class="cvHeader">
+    <div class="nameBlock">
+      <h1 class="cvName" data-field="header.name"></h1>
+    </div>
+    <div class="headlineBlock">
+      <div class="cvHeadline" data-field="header.headline"></div>
+    </div>
+    <div class="locationBlock">
+      <div class="cvLocation" data-field="header.location"></div>
+    </div>
+    <div class="contactStack" data-slot="contact"></div>
+    <div class="targetBlock">
+      <div class="cvTarget" data-field="header.target_line"></div>
+    </div>
+    <div class="inlineLinks" data-slot="links"></div>
+  </header>
+
+  <section class="summaryBlock">
+    <p class="summaryText" data-field="summary"></p>
+  </section>
+
+  <section class="sections" data-slot="sections"></section>
+</article>

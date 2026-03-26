@@ -1,0 +1,51 @@
+{
+  "target_role": {
+    "title": "Staff Product Engineer",
+    "level": "staff",
+    "team": "Internal Tools",
+    "location": "Remote EU",
+    "employment_type": "Full-time"
+  },
+  "company": {
+    "name": "Foundry Systems",
+    "industry": "B2B SaaS",
+    "description": "Builds workflow software for operational teams that need robust internal products."
+  },
+  "summary": "Looking for a senior engineer who can own product-facing internal tooling, collaborate across functions, and make pragmatic architecture decisions.",
+  "must_have": [
+    "internal tooling",
+    "product thinking",
+    "architecture",
+    "cross-functional collaboration",
+    "python"
+  ],
+  "nice_to_have": [
+    "leadership",
+    "workflow",
+    "reliability",
+    "javascript"
+  ],
+  "keywords": [
+    "web apps",
+    "platform",
+    "operations",
+    "automation",
+    "pdf"
+  ],
+  "focus": {
+    "leadership": 3,
+    "backend": 3,
+    "frontend": 2,
+    "architecture": 4,
+    "product": 3
+  },
+  "constraints": {
+    "prioritize_recent": true,
+    "max_roles": 3,
+    "max_projects": 2,
+    "max_achievements": 2,
+    "max_skills": 8,
+    "notes": "Bias toward internal tools, product ownership, and technical clarity.",
+    "avoid": ["agency"]
+  }
+}
