@@ -43,7 +43,7 @@ Then open `http://localhost:8000`.
 ## Workflow
 
 1. Start the app.
-2. Load your own profile and job JSON files, or use the sample data.
+2. Load your own profile and job JSON files, or use the sample data. The two samples contain the full JSON structure, for which the recommended use case is to feed them into an LLM and provide it with your background, projects, skills, education, or whatever else you want displayed on your CV, and use the LLM to format it appropriately. The job JSON file can be built in a similar way, by either providing a URL or copy-pasting text of a job description and using the LLM to format it.
 3. Review the generated sections and included items.
 4. Adjust the headline, summary, template, and section selection.
 5. Print from the browser to save the final CV as PDF.
@@ -53,12 +53,3 @@ Then open `http://localhost:8000`.
 ```bash
 py -m unittest
 ```
-
-## Local-Only Files
-
-These are intentionally ignored and are not part of the repository:
-
-- `output/`
-- `profile.master.json`
-- `profile.master.additions.json`
-- `wsp.json`
